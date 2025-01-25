@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
-import { Link, useRouter } from "expo-router";
+import { Link, router, useRouter } from "expo-router";
 import RideCard from "@/components/RideCard";
 import { Ride } from "@/types/type";
 import { icons, images } from "@/constants";
@@ -131,7 +131,14 @@ const Page = (props: Props) => {
   const loading = true;
   const [hasPermissions, setHasPermissions] = useState(false);
   const handleSignOut = () => {};
-  const handleDestinationPress = () => {};
+  const handleDestinationPress = (location: {
+    latitude: number | undefined;
+    longitude: number | undefined;
+    address: string;
+  }) => {
+    setDestinationLocation(location);
+    router.push(`/(root)/find-ride`);
+  };
 
   useEffect(() => {
     const requestLocation = async () => {
