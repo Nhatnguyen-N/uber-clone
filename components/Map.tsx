@@ -6,7 +6,7 @@ import { calculateRegion, generateMarkersFromData } from "@/lib/map";
 import { Driver, MarkerData } from "@/types/type";
 import { icons } from "@/constants";
 type Props = {};
-const drivers: Driver[] = [
+const drivers: MarkerData[] = [
   {
     id: 1,
     first_name: "James",
@@ -69,6 +69,8 @@ const Map = (props: Props) => {
     destinationLongitude,
   });
   useEffect(() => {
+    //TODO:Remove
+    setDrivers(drivers);
     if (Array.isArray(drivers)) {
       if (!userLatitude || !userLongitude) return;
 
@@ -95,8 +97,8 @@ const Map = (props: Props) => {
         <Marker
           key={marker.id}
           coordinate={{
-            latitude: marker.latitude,
-            longitude: marker.longitude,
+            latitude: marker.latitude as number,
+            longitude: marker.longitude as number,
           }}
           title={marker.title}
           image={
