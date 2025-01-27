@@ -24,7 +24,7 @@ const BookRide = () => {
       merchantIdentifier="merchant.uber.com"
       urlScheme="myapp"
     >
-      <RideLayout snapPoints={["85%"]} title="Book Ride">
+      <RideLayout snapPoints={["45%", "85%"]} title="Book Ride">
         <>
           <Text className="text-xl font-JakartaSemiBold mb-3">
             Ride Information
@@ -93,7 +93,13 @@ const BookRide = () => {
             </View>
           </View>
 
-          <Payment />
+          <Payment
+            fullName={user?.fullName!}
+            email={user?.emailAddresses[0].emailAddress!}
+            amount={driverDetails?.price!}
+            driverId={driverDetails?.id}
+            rideTime={driverDetails?.time!}
+          />
         </>
       </RideLayout>
     </StripeProvider>
